@@ -3,8 +3,6 @@
     <div id="logos">
       <img width="256" alt="Vue logo" src="./assets/logo.svg" />
       <span class="plus">+</span>
-      <img width="256" alt="Apollo logo" src="./assets/Apollo.svg" />
-      <span class="plus">+</span>
       <img width="256" alt="GraphQL logo" src="./assets/GraphQL_Logo.svg" />
     </div>
 
@@ -16,7 +14,7 @@
         type="checkbox"
         name="showFlags"
         v-model="settings.showFlags"
-        v-on:change="changeSetting()"
+        v-on:change="updateSettings(settings)"
       />
     </label>
 
@@ -27,40 +25,21 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex"
 import Countries from "./components/Countries.vue"
-import gql from "graphql-tag"
 
 export default {
   name: "app",
   components: {
     Countries,
   },
-  apollo: {
-    settings: gql`
-      query settings {
-        settings @client {
-          showFlags
-        }
-      }
-    `,
+  computed: {
+    ...mapState({
+      settings: state => state.settings,
+    }),
   },
   methods: {
-    async changeSetting() {
-      try {
-        await this.$apollo.mutate({
-          mutation: gql`
-            mutation updateSettings($settings: Object!) {
-              updateSettings(settings: $settings) @client
-            }
-          `,
-          variables: {
-            settings: this.settings,
-          },
-        })
-      } catch (error) {
-        console.log("Failed local state update", error)
-      }
-    },
+    ...mapActions(["updateSettings"]),
   },
 }
 </script>

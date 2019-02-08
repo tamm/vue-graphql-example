@@ -1,9 +1,7 @@
-# vue-apollo-example
-Vue Apollo Example Project
+# vue-graphql-example
+Vue GraphQL Example Project
 
-This project is made to demonstrate the basic setup of a project with VueJS + Vue Apollo + GraphQL + locally stored data.
-
-I made this because I can't find any other examples of code where persistence of local variables is done in a functional manner.
+This project is made to demonstrate the basic setup of a project with VueJS + VueX + GraphQL + persisted locally stored data.
 
 I do not claim that this is THE correct way to set these things up, but it works!
 

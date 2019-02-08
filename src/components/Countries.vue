@@ -14,25 +14,18 @@
 </template>
 
 <script>
-import gql_COUNTRIES from "../graphql/Countries.gql"
-import gql from "graphql-tag"
+import { mapState } from "vuex"
 
 export default {
   name: "Countries",
-  props: {
-    msg: String,
+  beforeMount() {
+    this.$store.dispatch("getCountries")
   },
-  apollo: {
-    countries: {
-      query: gql_COUNTRIES,
-    },
-    settings: gql`
-      query settings {
-        settings @client {
-          showFlags
-        }
-      }
-    `,
+  computed: {
+    ...mapState({
+      countries: state => state.countries,
+      settings: state => state.settings,
+    }),
   },
 }
 </script>

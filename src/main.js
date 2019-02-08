@@ -1,11 +1,15 @@
 import Vue from "vue"
 import App from "./App.vue"
+import { createStore } from "./store"
 
-import { createProvider } from "./vue-apollo"
+// wait for store rehydration
+async function init() {
+  const store = await createStore()
 
-createProvider().then(apolloProvider => {
   new Vue({
-    apolloProvider,
+    store,
     render: h => h(App),
   }).$mount("#app")
-})
+}
+
+init()
