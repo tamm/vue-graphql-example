@@ -14,7 +14,7 @@
         type="checkbox"
         name="showFlags"
         v-model="settings.showFlags"
-        v-on:change="updateSettings(settings)"
+        v-on:change="changeSetting()"
       />
     </label>
 
@@ -45,6 +45,13 @@ export default {
   },
   methods: {
     ...mapActions(["updateSettings"]),
+    async changeSetting() {
+      try {
+        await this.updateSettings(this.settings)
+      } catch (error) {
+        console.log("Failed local state update", error)
+      }
+    },
   },
 }
 </script>
