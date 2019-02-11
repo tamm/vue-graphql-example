@@ -5,6 +5,8 @@ This project is made to demonstrate the basic setup of a project with VueJS + Vu
 
 I do not claim that this is THE correct way to set these things up, but it works!
 
+Check out the resulting app at https://vue-graphql-example.herokuapp.com/
+
 ## Project setup
 ```
 yarn install
